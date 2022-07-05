@@ -13,6 +13,35 @@
 
         <a href="{{route('customers.export-sheets',)}}" class="btn btn-info">Download Multiple Sheets</a>
         <a href="{{route('customers.export-heading',)}}" class="btn btn-info">Export with Heading Row</a>
+        <a href="{{route('customers.export-mapping',)}}" class="btn btn-info">Export Purchases</a>
+        <a href="{{route('customers.export-styling',)}}" class="btn btn-info">Export with Styling</a>
+        <a href="{{route('customers.export-autosize',)}}" class="btn btn-info">Export with Autosize</a>
+        <a href="{{route('customers.export-dateformat',)}}" class="btn btn-info">Export with Date format</a>
+
+        <br/>
+        <form action="{{route('customers.import')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import"/>
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
+        </form>
+
+        <form action="{{route('customers.import-large')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import"/>
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
+        </form>
+
+        <form action="{{route('customers.import-relationship')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import"/>
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
+        </form>
+
+        <form action="{{route('customers.import-dateformat')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import"/>
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
+        </form>
 
 
         <br/>
