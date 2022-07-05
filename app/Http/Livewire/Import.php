@@ -27,9 +27,7 @@ class Import extends Component
         $this->importing = true;
         $this->importFilePath = $this->importFile->store('imports');
 
-        $batch = Bus::batch([
-            new ImportJob($this->importFilePath),
-        ])->dispatch();
+        $batch = Bus::batch([new ImportJob($this->importFilePath),])->dispatch();
 
         $this->batchId = $batch->id;
     }

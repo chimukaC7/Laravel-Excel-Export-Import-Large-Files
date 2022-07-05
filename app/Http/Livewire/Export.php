@@ -10,17 +10,15 @@ use Illuminate\Support\Facades\Storage;
 class Export extends Component
 {
     public $batchId;
-    public $exporting = false;
-    public $exportFinished = false;
+    public $exporting = false;//status variables
+    public $exportFinished = false;//status variables
 
     public function export()
     {
         $this->exporting = true;
         $this->exportFinished = false;
 
-        $batch = Bus::batch([
-            new ExportJob(),
-        ])->dispatch();
+        $batch = Bus::batch([new ExportJob(),])->dispatch();
 
         $this->batchId = $batch->id;
     }
