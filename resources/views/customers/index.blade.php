@@ -43,6 +43,12 @@
             <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
         </form>
 
+        <form action="{{route('customers.import-error')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import"/>
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File"/>
+        </form>
+
 
         <br/>
         <br/>

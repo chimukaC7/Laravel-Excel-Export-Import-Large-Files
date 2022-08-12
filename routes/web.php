@@ -34,3 +34,4 @@ Route::post('customers/import',[\App\Http\Controllers\CustomersController::class
 Route::post('customers/import/large',[\App\Http\Controllers\CustomersController::class,'import_large'])->name('customers.import-large');
 Route::post('customers/import/relationship',[\App\Http\Controllers\CustomersController::class,'import_relationship'])->name('customers.import-relationship');
 Route::post('customers/import/dateformat',[\App\Http\Controllers\CustomersController::class,'import_dateformat'])->name('customers.import-dateformat');
+Route::post('customers/import/errors',[\App\Http\Controllers\CustomersController::class,'import_errors'])->name('customers.import-errors');

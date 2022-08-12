@@ -12,6 +12,7 @@ use App\Exports\CustomersExportStyling;
 use App\Exports\CustomersExportView;
 use App\Imports\CustomersImport;
 use App\Imports\CustomersImportDateformat;
+use App\Imports\CustomersImportErrors;
 use App\Imports\CustomersImportLarge;
 use App\Imports\CustomersImportRelationships;
 use App\Models\Customer;
@@ -117,6 +118,13 @@ class CustomersController extends Controller
     public function import_dateformat(Request $request)
     {
         Excel::import(new CustomersImportDateformat(), $request->file('import'));
+
+        return redirect()->route('customers.index')->withMessage('Successfully imported');
+    }
+
+    public function import_errors(Request $request)
+    {
+        Excel::import(new CustomersImportErrors(), $request->file('import'));
 
         return redirect()->route('customers.index')->withMessage('Successfully imported');
     }
