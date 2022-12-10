@@ -7,8 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CustomersImportLarge implements ToModel,WithBatchInserts,WithChunkReading,ShouldQueue
+class CustomersImportLarge implements ToModel,WithHeadingRow,WithBatchInserts,WithChunkReading,ShouldQueue
 {
     //if ShouldQueue is enabled then in .env put database
     /**
@@ -21,9 +22,9 @@ class CustomersImportLarge implements ToModel,WithBatchInserts,WithChunkReading,
         return new Customer([
             //which fields need to be filed by which row
             //useful wen there are no column rows
-            'first_name' => $row[1],
-            'last_name' => $row[2],
-            'email' => $row[3]
+            'first_name' => $row['first_name'],
+            'last_name' => $row['last_name'],
+            'email' => $row['email']
         ]);
     }
 

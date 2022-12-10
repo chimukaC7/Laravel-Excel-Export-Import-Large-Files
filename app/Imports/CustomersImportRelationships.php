@@ -37,6 +37,7 @@ class CustomersImportRelationships implements ToModel
 
 //    private function getCustomerIdDB($firstname, $lastname)
 //    {
+//        every row in the excel queries the database
 //        $customer = Customer::where('first_name',$firstname)->where('last_name',$lastname)->first();
 //        if (!$customer) return null;
 //

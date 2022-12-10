@@ -40,6 +40,7 @@ class CustomersController extends Controller
     public function export_store()
     {
 //        Excel::store(new CustomersExport(), 'customers-' . now()->toDateString() . '.xlsx');
+        //Excel::store(new CustomersExport(), 'customers-' . now()->toDateString() . '.xlsx', 'public');
         Excel::store(new CustomersExport(), 'customers-' . now()->toDateString() . '.xlsx', 'public');
         return back();
     }
