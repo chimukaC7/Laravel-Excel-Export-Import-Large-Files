@@ -63,7 +63,10 @@ class CustomersController extends Controller
 
     public function export_mapping()
     {
-        return Excel::download(new CustomersExportMapping(), 'customers.xlsx');
+        $now = now()->format('M-Y');
+
+        ini_set('memory_limit', '-1');
+        return Excel::download(new CustomersExportMapping(), "customers--{$now}.xlsx");
     }
 
     public function export_styling()

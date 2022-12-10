@@ -14,9 +14,9 @@ class Import extends Component
 
     public $batchId;
     public $importFile;
-    public $importing = false;
     public $importFilePath;
-    public $importFinished = false;
+    public $importing = false;//status variables
+    public $importFinished = false;//status variables
 
     public function import()
     {
@@ -24,7 +24,7 @@ class Import extends Component
             'importFile' => 'required',
         ]);
 
-        $this->importing = true;
+        $this->importing = true;//change status
         $this->importFilePath = $this->importFile->store('imports');
 
         $batch = Bus::batch([new ImportJob($this->importFilePath),])->dispatch();
@@ -43,11 +43,11 @@ class Import extends Component
 
     public function updateImportProgress()
     {
-        $this->importFinished = $this->importBatch->finished();
+        $this->importFinished = $this->importBatch->finished();//get status
 
         if ($this->importFinished) {
             Storage::delete($this->importFilePath);
-            $this->importing = false;
+            $this->importing = false;//change status
         }
     }
 

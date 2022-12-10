@@ -16,6 +16,9 @@ class TransactionsImport implements ToModel, WithHeadingRow, WithChunkReading
 
     public function __construct()
     {
+        //this user should be mapped to the user id instead of username
+        //the document contains the username but it should be mapped to the user id
+        //one time query the database
         $this->users = User::all(['id', 'name'])->pluck('id', 'name');
     }
 

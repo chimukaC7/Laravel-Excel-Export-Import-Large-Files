@@ -15,7 +15,7 @@ class Export extends Component
 
     public function export()
     {
-        $this->exporting = true;
+        $this->exporting = true;//change status
         $this->exportFinished = false;
 
         $batch = Bus::batch([new ExportJob(),])->dispatch();
@@ -32,18 +32,18 @@ class Export extends Component
         return Bus::findBatch($this->batchId);
     }
 
+    public function updateExportProgress()
+    {
+        $this->exportFinished = $this->exportBatch->finished();//get status
+
+        if ($this->exportFinished) {
+            $this->exporting = false;//change status
+        }
+    }
+
     public function downloadExport()
     {
         return Storage::download('public/transactions.csv');
-    }
-
-    public function updateExportProgress()
-    {
-        $this->exportFinished = $this->exportBatch->finished();
-
-        if ($this->exportFinished) {
-            $this->exporting = false;
-        }
     }
 
     public function render()
