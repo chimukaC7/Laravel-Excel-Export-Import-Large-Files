@@ -1,3 +1,5 @@
+-job is a task that runs in the background and executed by the framework
+
 composer install --ignore-platform-reqs
 
 
@@ -50,3 +52,6 @@ $ php artisan queue:listen
 install
 -predis/predis
 -make a change in the config to predis
+
+
+Laravel Report Generator Package
