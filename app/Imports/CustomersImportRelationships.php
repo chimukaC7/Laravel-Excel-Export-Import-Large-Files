@@ -14,22 +14,24 @@ class CustomersImportRelationships implements ToModel
     {
         //set the private variable
         //this way we doing one query to the database plus select only the fields that are needed
-        $this->customers = Customer::select('id','first_name','last_name')->get()
-            ->keyBy(function ($item){//grouping by firstname and lastname
-               return $item->first_name . ' ' . $item->last_name;//firstname and last name come the key
+        $this->customers = Customer::query()
+            ->select('id', 'first_name', 'last_name')
+            ->get()
+            ->keyBy(function ($item) {//grouping by firstname and lastname
+                return $item->first_name . ' ' . $item->last_name;//firstname and last name come the key
             })->toArray();
     }
 
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
         //every row will query the database
         return new Purchase([
-            'customer_id' => $this->getCustomerId($row[1],$row[2]),
+            'customer_id' => $this->getCustomerId($row[1], $row[2]),
             'bank_acc_number' => $row[3],
             'company' => $row[4]
         ]);
@@ -44,8 +46,9 @@ class CustomersImportRelationships implements ToModel
 //        return $customer->id;
 //    }
 
-    private function getCustomerId($firstname,$lastname){
-        $customer = $this->customers[$firstname.' '.$lastname] ?? null;
+    private function getCustomerId($firstname, $lastname)
+    {
+        $customer = $this->customers[$firstname . ' ' . $lastname] ?? null;
         if (!$customer) return null;
 
         return $customer['id'];

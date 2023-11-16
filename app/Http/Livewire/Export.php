@@ -34,7 +34,7 @@ class Export extends Component
 
     public function updateExportProgress()
     {
-        $this->exportFinished = $this->exportBatch->finished();//get status
+        $this->exportFinished = $this->exportBatch->finished();//get status,it returns true or false
 
         if ($this->exportFinished) {
             $this->exporting = false;//change status
